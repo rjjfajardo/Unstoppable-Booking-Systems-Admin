@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<header>
+    <%- include('../partials/header'); %>
+</header>
+<body>
+    <main>
+        <%- include('../partials/sidebar'); %>
+       
+        <div class="main-content">
+     <main>     
+          <section class="recent">
+              <div class="activity-grid">
+                  <div class="activity-card">
+                      <h3>List of Cars                  
+                            <a href="/carform"><i class="far fa-plus-square"></i>Add Car</a>
+                     </h3>
+                      <div class="table-responsive">
+                       
+                          <table id="carTable">
+                              
+                              <thead>
+                                  <tr>
+                                      <th>Car</th>
+                                      <th>Plate Number</th>
+                                      <th>Transmission</th>
+                                      <th>Capacity</th>
+                                      <th>Status</th>
+                                      <th>Action</th>   
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <% for(var i=0; i < cars.length; i++) { %>
+                                  <tr>
+                                    <td><%= cars[i].vehicle_brand_model %></td>
+                                    <td><%= cars[i].plate_no %></td>
+                                    <td><%= cars[i].transmission %></td>
+                                    <td><%= cars[i].capacity %></td>
+                                    <td>
+                                        <span class="badge success"><%= cars[i].availability_status %></span>
+                                    </td>
+                                    <td>             
+                                        <a href="/carform" class="btn btn-warning"><i class="fas fa-eye"></i></a>                  
+                                        <a href="/carform" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                        <a href="/carform" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                        
+                                    </td>
+                                </tr>
+                              </tbody>
+                              <% } %>
+                          </table>
+                       
+                      </div>
+                  </div>
+                  </div>
+              </div>
+          </section>
+          
+      </main>
+     </div>
+     <script>
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("carTable");
+          tr = table.getElementsByTagName("tr");
+        
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+        </script>
+    </main>
+</body>
+</html>

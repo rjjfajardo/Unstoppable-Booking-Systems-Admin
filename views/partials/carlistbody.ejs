@@ -1,0 +1,68 @@
+     <div class="main-content">
+     <main>     
+          <section class="recent">
+              <div class="activity-grid">
+                  <div class="activity-card">
+                      <h3>List of Cars                  
+                            <a href="/carform">Add Car</a>
+                    </h3>
+                      <div class="table-responsive">
+                          <table id="carTable">
+                              <thead>
+                                  <tr>
+                                      <th>Car</th>
+                                      <th>Plate Number</th>
+                                      <th>Transmission</th>
+                                      <th>Acquired</th>
+                                      <th>Status</th>
+                                      <th>Action</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  
+                                  <tr>
+                                    <td>2013 Toyota Wigo</td>
+                                    <td>JSJ 222</td>
+                                    <td>69,420km</td>
+                                    <td>22 Aug, 2020</td>
+                                    <td>
+                                        <span class="badge success">In shop</span>
+                                    </td>
+                                    <td>             
+                                        <a href="/carform" class="btn btn-warning"><i class="fas fa-eye"></i></a>                  
+                                        <a href="/carform" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                        <a href="/carform" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                        
+                                    </td>
+                                </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+          </section>
+          
+      </main>
+     </div>
+     <script>
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("carTable");
+          tr = table.getElementsByTagName("tr");
+        
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+        </script>

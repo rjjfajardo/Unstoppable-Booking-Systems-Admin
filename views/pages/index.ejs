@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <main>
+        <%- include('../partials/sidebar'); %>
+        <!-- <%- include('../partials/body'); %> -->
+        <div class="main-content">
+            <main>       
+                 <section class="recent">
+                     <div class="activity-grid">
+                         <div class="activity-card">
+                             <h3>Recent activity</h3>
+                             
+                             <div class="table-responsive">
+                                 <table>
+                                     <thead>
+                                         <tr>
+                                             <th>Car Rented</th>
+                                             <th>Start Date</th>
+                                             <th>End Date</th>
+                                             <th>Status</th>
+                                             <th>Renter</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody>
+                                        <tbody>
+                                            <% for(var i=0; i < bookings.length; i++) { %>
+                                             <tr>
+                                                 <td><%= bookings[i].fullname %></td>
+                                                 <td><%= bookings[i].vehicle_brand_model %></td>
+                                                 <td><%= bookings[i].plate_no %></td>
+                                                 <td>
+                                                     <span class="badge success"><%= bookings[i].status %></span>
+                                                 </td>
+                                                 <td><%= bookings[i].fullname %></td>
+                                             </tr>
+                                         </tbody>
+                                         <% } %>
+                                 </table>
+                             </div><br>
+                         </div>
+                         
+                         <div class="summary">
+                             <div class="summary-card">
+                                 <div class="summary-single">
+                                     <span class="ti-agenda"></span>
+                                     <div>
+                                         <h5>2</h5>
+                                         <small>Pending applications</small>
+                                     </div>
+                                 </div>
+                                 <div class="summary-single">
+                                     <span class="ti-calendar"></span>
+                                     <div>
+                                         <h5>3</h5>
+                                         <small>Number of bookings</small>
+                                     </div>
+                                 </div>
+                             </div>
+                             </div>
+                         </div><br>
+                         <div class="activity-grid">
+                           <div class="activity-card">
+                               <h3>Cars in Shop</h3>
+                               <div class="table-responsive">
+                                 <table>
+                                     <thead>
+                                         <tr>
+                                             <th>Car</th>
+                                             <th>Mileage</th>
+                                             <th>Acquired</th>
+                                             <th>Status</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody>
+                                         <tr>
+                                             <td>2018 Toyota Vios</td>
+                                             <td>69,420km</td>
+                                             <td>22 Aug, 2020</td>
+                                             <td>
+                                                 <span class="badge out">Rented</span>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td>2020 Isuzu MUX</td>
+                                             <td>40,000km</td>
+                                             <td>22 Aug, 2020</td>
+                                             <td>
+                                                 <span class="badge repair">Repairing</span>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td>2011 Isuzu DMAX</td>
+                                             <td>85,000km</td>
+                                             <td>22 Aug, 2020</td>
+                                             <td>
+                                                 <span class="badge success">In shop</span>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                           <td>2013 Toyota Wigo</td>
+                                           <td>69,420km</td>
+                                           <td>22 Aug, 2020</td>
+                                           <td>
+                                               <span class="badge success">In shop</span>
+                                           </td>
+                                       </tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+                           </div>
+                           
+                           <div class="summary">
+                               <div class="summary-card">
+                                   <div class="summary-single">
+                                       <span class="ti-agenda"></span>
+                                       <div>
+                                           <h5>2</h5>
+                                           <small>Number of cars in shop</small>
+                                       </div>
+                                   </div>
+                               </div>
+                               </div>
+                           </div>
+                     </div>
+                     
+                 </section>
+                 
+             </main>
+            </div>
+    </main>
+</body>
+</html>
