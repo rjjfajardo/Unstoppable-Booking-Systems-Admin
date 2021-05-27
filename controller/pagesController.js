@@ -59,7 +59,7 @@ let carEditInfo = async (req, res) => {
 
 let carInformation = async (req, res) => {
 
-    connection.query('SELECT * FROM cars WHERE id = ?', req.params.car_id, (req, cars) => {
+    connection.query('SELECT *  FROM cars LEFT JOIN bookings_tbl ON cars.id = bookings_tbl.vehicle_id LEFT JOIN users on users.id = bookings_tbl.user_id  WHERE cars.id = ?', req.params.car_id, (req, cars) => {
 
         return res.render("carinfo.ejs", { cars : cars })
  
@@ -73,7 +73,7 @@ let bookingConfirmation = async (req, res) => {
     
     
 
-    let sql = 'UPDATE bookings_tbl SET status = ? WHERE booking_id'
+    let sql = 'UPDATE bookings_tbl SET status = ? WHERE booking_id = ?'
 
     connection.query(sql, ['success', req.params.booking_id], (err, row) => {
         if(err){
@@ -85,6 +85,21 @@ let bookingConfirmation = async (req, res) => {
     })
 }
 
+let deleteBookings = async (req, res) => {
+
+    let id = req.booking_id;
+
+    let sql = "DELETE * bookings_tbl WHERE booking_id = ?"
+
+    connection.query(sql, id, (err, row) => {
+        if(err){
+            throw err;
+        }
+        else{
+            res.redirect('/bookings');
+        }
+    })
+}
 
 module.exports = {  
     carListPage : carListPage,  
@@ -93,5 +108,6 @@ module.exports = {
     carUpdate : carUpdate,
     carInformation : carInformation,
     carEditInfo : carEditInfo,
-    bookingConfirmation : bookingConfirmation
+    bookingConfirmation : bookingConfirmation,
+    deleteBookings : deleteBookings
 }       

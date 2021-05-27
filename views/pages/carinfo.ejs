@@ -6,7 +6,12 @@
 <body>
     
         <%- include('../partials/sidebar'); %>
-        
+        <style>
+
+            .fc-unthemed td.fc-today{
+              background:none !important;
+            }
+        </style>
        
         <div class="card" style="margin-left: 250px; margin-right: 10px;">
             <div class="card-header">
@@ -45,10 +50,25 @@
               
             </div>
         </div>
- 
+        <script>
+            var data = [];
+            var i = 0;
+        </script>
         
-        <!-- loop thru the booking sched and then put it in an array then pass to the caledar  -->
+
+         <!-- loop thru the booking sched and then put it in an array then pass to the caledar  -->
       
+        <% cars.forEach(function(cars){ %>
+          <script>
+
+               data[i]  = { 'title' : '<%= cars.fullname %>' , 'start': '<%= cars.rent_startDate %>' + ' 12:00:00', 'end' : '<%= cars.rent_endDate %>' + ' 12:00:00' };
+                i++;
+              
+          </script>
+         
+          <% }) %>
+     
+       
           <script src="/js/jquery-3.3.1.min.js"></script>
           <script src="/js/popper.min.js"></script>
           <script src="/js/bootstrap.min.js"></script>
@@ -58,15 +78,20 @@
           <script src='/fullcalendar/packages/daygrid/main.js'></script>
       
           <script>
+          
             document.addEventListener('DOMContentLoaded', function() {
           var calendarEl = document.getElementById('calendar');
-      
+          
+          console.log(data);
+    
+
+          
           var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: [ 'interaction', 'dayGrid' ],
             defaultDate: '2021-05-25',
-            editable: true,
+            editable: false,
             eventLimit: true,
-            //  events: [ {}]
+             events: data
           });
           calendar.render();
         });

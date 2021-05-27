@@ -50,9 +50,11 @@ let initWebRoutes = (app) => {
     
     router.get("/carinfo/:car_id", pagesController.carInformation)
 
-    router.post("/carlist/:booking_id", pagesController.carEditInfo)
+    router.post("/carlist/", pagesController.carEditInfo)
 
     router.post("/bookings", pagesController.bookingConfirmation)
+
+    router.post("/bookings/:booking_id", pagesController.deleteBookings)
     // router.get("/carlist/:car_id", pagesController.carListPage)
   
 
