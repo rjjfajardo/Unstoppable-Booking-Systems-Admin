@@ -12,9 +12,9 @@ let getProfile = async (req, res) => {
 
 let getBookings = async (req, res) => {
 
-    connection.query("SELECT fullname, vehicle_brand_model, plate_no, rent_startDate, rent_endDate, status FROM bookings_tbl INNER JOIN cars ON bookings_tbl.vehicle_id = cars.id INNER JOIN users ON bookings_tbl.user_id = users.id AND bookings_tbl.status = 'success'", (req, success) => {
+    connection.query("SELECT bookings_tbl.booking_id, fullname, vehicle_brand_model, plate_no, rent_startDate, rent_endDate, status FROM bookings_tbl INNER JOIN cars ON bookings_tbl.vehicle_id = cars.id INNER JOIN users ON bookings_tbl.user_id = users.id AND bookings_tbl.status = 'success'", (req, success) => {
         
-        connection.query("SELECT fullname, vehicle_brand_model, plate_no, rent_startDate, rent_endDate, status FROM bookings_tbl INNER JOIN cars ON bookings_tbl.vehicle_id = cars.id INNER JOIN users ON bookings_tbl.user_id = users.id AND bookings_tbl.status = 'pending'", (req, pending) => {
+        connection.query("SELECT bookings_tbl.booking_id, fullname, vehicle_brand_model, plate_no, rent_startDate, rent_endDate, status FROM bookings_tbl INNER JOIN cars ON bookings_tbl.vehicle_id = cars.id INNER JOIN users ON bookings_tbl.user_id = users.id AND bookings_tbl.status = 'pending'", (req, pending) => {
         
         res.render("booking.ejs", { success : success, pending : pending })
         })
@@ -68,14 +68,9 @@ let carInformation = async (req, res) => {
 
 
 let bookingConfirmation = async (req, res) => {
-
-    let data = req.body;
-    
-    
-
     let sql = 'UPDATE bookings_tbl SET status = ? WHERE booking_id = ?'
 
-    connection.query(sql, ['success', req.params.booking_id], (err, row) => {
+    connection.query(sql, ['success', req.query.id], (err, row) => {
         if(err){
             throw err;
         }
@@ -86,12 +81,9 @@ let bookingConfirmation = async (req, res) => {
 }
 
 let deleteBookings = async (req, res) => {
+    let sql = "DELETE FROM bookings_tbl WHERE booking_id = ?"
 
-    let id = req.booking_id;
-
-    let sql = "DELETE * bookings_tbl WHERE booking_id = ?"
-
-    connection.query(sql, id, (err, row) => {
+    connection.query(sql, req.params.booking_id, (err, row) => {
         if(err){
             throw err;
         }
