@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <main>
+        <%- include('../partials/sidebar'); %>
+       <!-- <form class="carform">
+    <label>Car Year:</label><br>
+    <input type="text" id="carname" name="carname" required><br><br>
+    <label>Car Model:</label><br>
+    <input type="text" id="carmodel" name="carmodel" required><br><br>
+    <label>Car Mileage:</label><br>
+    <input type="number" id="mileage" name="mileage" required><br><br>  
+    <label>Renting Price:</label><br>
+    <input type="number" id="rentprice" name="rentprice" required><br><br>   
+    <label>Plate Number:</label><br>
+    <input type="number" id="platenum" name="platenum" required><br><br>   
+    <label>Car Pictures:</label><br>
+    <input type="file"><br><br>
+    <input type="submit" value="Submit">
+  </form> -->
+
+<form  method="POST" action="/carlist">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label style="font-weight: bold;">Vehicle Type</label>
+          <input type="hidden" class="form-control"  value="<%= cars[0].id %>" id="type" name="id">
+          <input type="text" class="form-control"  value="<%= cars[0].vehicle_type %>" id="type" name="type">
+        </div>
+        <div class="form-group">
+          <label style="font-weight: bold;">Vehicle Brand Model</label>
+          <input type="text" class="form-control" value="<%= cars[0].vehicle_brand_model %>" id="brand_model" name="brand_model">
+        </div>
+        <div class="form-group">
+          <label style="font-weight: bold;">Plate Number</label>
+          <input type="text" class="form-control" value="<%= cars[0].plate_no %>" id="plate_number" name="plate_number">
+        </div>
+        
+      
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label style="font-weight: bold;">Passenger Capacity</label>
+            <input type="text" class="form-control" value="<%= cars[0].capacity %>" id="capacity" name="capacity">
+          </div>
+        <div class="form-group">
+          <label style="font-weight: bold;" >Transmission</label>
+          <input type="text" class="form-control" value="<%= cars[0].transmission %>" id="transmission" name="transmission">
+        </div>
+  
+        <div class="form-group">
+          <label style="font-weight: bold;" >Rate Per Day</label>
+          <input type="text" class="form-control" value="<%= cars[0].price_per_day %>" id="rate" name="rate">
+        </div>
+       
+        
+        <!-- <div class="form-group">
+        <label>Status</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" >
+       </div> -->
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <!-- <button type="submit" class="btn btn-primary">Cancel</button> -->
+    <a href="/carlist" class="btn btn-primary">Cancel</a>
+  </form>
+    </main>
+</body>
+</html>

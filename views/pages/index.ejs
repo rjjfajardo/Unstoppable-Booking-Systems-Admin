@@ -8,7 +8,34 @@
         <%- include('../partials/sidebar'); %>
         <!-- <%- include('../partials/body'); %> -->
         <div class="main-content">
-            <main>       
+            <main>
+                    <div class="row">      
+                    <div class="card col-md-3 " style="border-radius: 24px; width: 0rem;  background-color: #ff4500; margin-right: 80px;">
+                        <img class="card-img-top"  src="/img/bookings.png" alt="Card image cap">
+                        <div class="card-body" style="background-color: #ffa500  ;">
+                        <p class="card-text" style="text-align:center; font-weight: bold;">TOTAL BOOKINGS</p>
+                        <p class="card-text" style="text-align:center; font-weight: bold; font-size: 40px; "><%= bookings.length %></p>
+                        <a href="/bookings"><p style="text-align:center; color: black;">See Full Details</p></a>
+                        </div>
+                    </div>
+                    <div class="card col-md-3" style="border-radius: 24px; width: 0rem;   background-color: #ff4500; margin-right: 80px;">
+                        <img class="card-img-top"  src="/img/sales.png" alt="Card image cap">
+                        <div class="card-body" style="background-color:  #ffa500  ;">
+                        <p class="card-text" style="text-align:center; font-weight: bold;">APPROVED RESERVATIONS</p>
+                        <p class="card-text" style="text-align:center; font-weight: bold; font-size: 40px; "><%= success.length %></p>
+                        <a href="/bookings"><p style="text-align:center; color: black;">See Full Details</p></a>
+                        </div>
+                    </div>
+                    <div class="card col-md-3" style=" border-radius: 24px; width: 0rem;   background-color: #ff4500; margin-right: 80px;">
+                        <img class="card-img-top"  src="/img/reservations.png" alt="Card image cap">
+                        <div class="card-body" style="background-color: #ffa500 ;">
+                        <p class="card-text" style="text-align:center; font-weight: bold;">PENDING RESERVATIONS</p>
+                        <p class="card-text" style="text-align:center; font-weight: bold; font-size: 40px; "><%= pendings.length %></p>
+                        <a href="/bookings"><p style="text-align:center; color: black;">See Full Details</p></a>
+                        </div>
+                    </div>
+                    </div>
+
                  <section class="recent">
                      <div class="activity-grid">
                          <div class="activity-card">
@@ -21,21 +48,21 @@
                                              <th>Car Rented</th>
                                              <th>Start Date</th>
                                              <th>End Date</th>
-                                             <th>Status</th>
+                                             
                                              <th>Renter</th>
+                                             <th>Transaction Date</th>
                                          </tr>
                                      </thead>
                                      <tbody>
                                         <tbody>
                                             <% for(var i=0; i < bookings.length; i++) { %>
                                              <tr>
-                                                 <td><%= bookings[i].fullname %></td>
                                                  <td><%= bookings[i].vehicle_brand_model %></td>
-                                                 <td><%= bookings[i].plate_no %></td>
-                                                 <td>
-                                                     <span class="badge success"><%= bookings[i].status %></span>
-                                                 </td>
+                                                 <td><%= bookings[i].rent_startDate %></td>
+                                                 <td><%= bookings[i].rent_endDate %></td>
+                                                 
                                                  <td><%= bookings[i].fullname %></td>
+                                                 <td><%= bookings[i].createdAt %></td>
                                              </tr>
                                          </tbody>
                                          <% } %>
@@ -43,7 +70,7 @@
                              </div><br>
                          </div>
                          
-                         <div class="summary">
+                         <!-- <div class="summary">
                              <div class="summary-card">
                                  <div class="summary-single">
                                      <span class="ti-agenda"></span>
@@ -55,16 +82,17 @@
                                  <div class="summary-single">
                                      <span class="ti-calendar"></span>
                                      <div>
-                                         <h5>3</h5>
+                                         <h5><%= bookings.length %></h5>
                                          <small>Number of bookings</small>
                                      </div>
                                  </div>
                              </div>
-                             </div>
-                         </div><br>
+                             </div> -->
+                         </div>
+                         <br><br><br>
                          <div class="activity-grid">
                            <div class="activity-card">
-                               <h3>Cars in Shop</h3>
+                               <h3>Under Maintenance Cars</h3>
                                <div class="table-responsive">
                                  <table>
                                      <thead>
@@ -111,13 +139,13 @@
                                      </tbody>
                                  </table>
                              </div>
-                           </div>
+                           </div>   
                            
                            <div class="summary">
                                <div class="summary-card">
                                    <div class="summary-single">
                                        <span class="ti-agenda"></span>
-                                       <div>
+                                       <div >
                                            <h5>2</h5>
                                            <small>Number of cars in shop</small>
                                        </div>

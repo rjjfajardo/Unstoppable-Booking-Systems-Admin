@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <%- include('../partials/head'); %> -->
+</head>
+<body>
+    
+        <%- include('../partials/sidebar'); %>
+        
+       
+        <div class="card" style="margin-left: 250px; margin-right: 10px;">
+            <div class="card-header">
+                <a href="/carlist" style="color: orange; font-size: 30px;"><i class="fas fa-arrow-left"></i></a>
+                <center><i class="fas fa-info-circle" style="font-size: 50px; color:orange;"></i></center> 
+            </div>
+            <div class="card-body">
+                <center>
+                <div class="card" style="width: 18rem; border: 3px solid orange;">
+                    <img src="<%= cars[0].image %>" class="card-img-top" alt="...">
+                  </div>   
+                </center> 
+            <hr>
+              <div class="row">
+                <div class="col-md-6">
+              <p class="card-text" style="text-transform: uppercase;"><span class="badge badge-info" style="padding: 10px;">TYPE</span>&nbsp;&nbsp;<%= cars[0].vehicle_type %></p>
+              <hr>
+              <p class="card-text"><span class="badge badge-info" style="padding: 10px;">MODEL</span>&nbsp;&nbsp;<%= cars[0].vehicle_brand_model %></p>
+              <hr>
+              <p class="card-text"><span class="badge badge-info" style="padding: 10px;">CAPACITY</span>&nbsp;&nbsp;<%= cars[0].capacity %></p>
+              <hr>
+            </div>
+            <div class="col-md-6">
+              <p class="card-text"><span class="badge badge-info" style="padding: 10px;">TRANSMISSION</span>&nbsp;&nbsp;<%= cars[0].transmission %></p>
+              <hr>
+              <p class="card-text"><span class="badge badge-info" style="padding: 10px;">RATE</span>&nbsp;&nbsp;PHP <%= cars[0].price_per_day %>.00</p>
+              <hr>
+              <p class="card-text"><span class="badge badge-info" style="padding: 10px;">PLATE NUMBER</span>&nbsp;&nbsp;<%= cars[0].plate_no %></p>
+              <hr>
+              </div>
+            </div>
+            
+            <div class="content">
+                <div id='calendar'></div>
+              </div>
+              
+            </div>
+        </div>
+ 
+        
+        <!-- loop thru the booking sched and then put it in an array then pass to the caledar  -->
+      
+          <script src="/js/jquery-3.3.1.min.js"></script>
+          <script src="/js/popper.min.js"></script>
+          <script src="/js/bootstrap.min.js"></script>
+      
+          <script src='/fullcalendar/packages/core/main.js'></script>
+          <script src='/fullcalendar/packages/interaction/main.js'></script>
+          <script src='/fullcalendar/packages/daygrid/main.js'></script>
+      
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+      
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'interaction', 'dayGrid' ],
+            defaultDate: '2021-05-25',
+            editable: true,
+            eventLimit: true,
+            //  events: [ {}]
+          });
+          calendar.render();
+        });
+      
+          </script>
+    
+</body>
+</html>

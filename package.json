@@ -5,6 +5,10 @@
     "start": "nodemon server.js"
   },
   "dependencies": {
+    "@fullcalendar/core": "^5.7.0",
+    "@fullcalendar/daygrid": "^5.7.0",
+    "@fullcalendar/list": "^5.7.0",
+    "@fullcalendar/timegrid": "^5.7.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",

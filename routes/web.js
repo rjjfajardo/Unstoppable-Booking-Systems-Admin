@@ -36,13 +36,24 @@ let initWebRoutes = (app) => {
     router.post("/logout", loginController.postLogOut);
 
 
-    //dashboard
-    router.get("/", pagesController.getDashBoard)
+
 
 
     router.get("/profile", pagesController.getProfile)
     router.get("/bookings", pagesController.getBookings)
     router.get("/carlist", pagesController.carListPage)
+
+
+    router.get("/caredit/:car_id", pagesController.carUpdate)
+
+   
+    
+    router.get("/carinfo/:car_id", pagesController.carInformation)
+
+    router.post("/carlist/:booking_id", pagesController.carEditInfo)
+
+    router.post("/bookings", pagesController.bookingConfirmation)
+    // router.get("/carlist/:car_id", pagesController.carListPage)
   
 
     router.get("/carform", newCarController.getForm)

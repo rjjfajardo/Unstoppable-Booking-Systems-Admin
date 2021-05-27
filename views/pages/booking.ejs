@@ -17,7 +17,7 @@
                          </div>
                      <div class="activity-grid">
                          <div class="activity-card">
-                             <h3>Bookings</h3>
+                             <h3>Approved Reservations</h3>
                              
                              <div class="table-responsive">
                                  <table id="bookingTable" data-name="myTable">
@@ -29,25 +29,31 @@
                                              <th>Start Date</th>
                                              <th>End Date</th>
                                              <th>Status</th>
+                                             <th>Action</th>
                                          </tr>
                                      </thead>
                                      <tbody>
-                                        <% for(var i=0; i < bookings.length; i++) { %>
+                                        <% for(var i=0; i < success.length; i++) { %>
                                          <tr>
-                                             <td><%= bookings[i].fullname %></td>
-                                             <td><%= bookings[i].vehicle_brand_model %></td>
-                                             <td><%= bookings[i].plate_no %></td>
+                                             <td><%= success[i].fullname %></td>
+                                             <td><%= success[i].vehicle_brand_model %></td>
+                                             <td><%= success[i].plate_no %></td>
+                                             <td><%= success[i].rent_startDate %></td>
+                                             <td><%= success[i].rent_endDate %></td>
                                              <td>
-                                                 <span class="badge success"><%= bookings[i].availability_status %></span>
-                                             </td>
-                                             <td><%= bookings[i].fullname %></td>
+                                                <span class="badge success"><%= success[i].status %></span> 
+                                              </td>
+                                              <td>
+                                                <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                              </td>
                                          </tr>
                                      </tbody>
                                      <% } %>
                                  </table>
                              </div>
                          </div>
-                         </div><br>
+                         </div>
+                         <br><br><br><br><br><br> 
                          <div class="pendingReserve">
                          <div class="search-wrapper">
                             <span class="ti-search"></span>
@@ -66,30 +72,74 @@
                                                 <th>Car to Rent</th>
                                                 <th>Start Date</th>
                                                 <th>End Date</th>
-                                                <th>Option</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>2018 Toyota Vios</td>
-                                                <td>15 Aug, 2020</td>
-                                                <td>22 Aug, 2020</td>
-                                                <td>
-                                                    <button>approve</button>
-                                                    <button>deny</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Logan Smith</td>
-                                                <td>2013 Toyota Wigo</td>
-                                                <td>15 Aug, 2020</td>
-                                                <td>22 Aug, 2020</td>
-                                                <td>
-                                                    <button>approve</button>
-                                                    <button>deny</button>
-                                                </td>
-                                            </tr>
+                                            <% for(var i=0; i < pending.length; i++) { %>
+                                                <tr>
+                                                    <td><%= pending[i].fullname %></td>
+                                                    <td><%= pending[i].vehicle_brand_model %></td>
+                                                   
+                                                    <td><%= pending[i].rent_startDate %></td>
+                                                    <td><%= pending[i].rent_endDate %></td>
+                                                    <td> 
+                                                       <span class="badge danger"><%= pending[i].status %></span>
+                                                    </td>
+                                                    <td>
+                                                      <form method="POST" action="/bookings">
+                                                      <a href="/bookings/<%= pending[i].id %>" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-check-square"></i></a>
+                                                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="exampleModalLabel">Confirm Booking</h5>
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                              </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                              <%= pending[i].fullname %>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                              <button type="submit" class="btn btn-primary">Confirm</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </form>
+                                                     <br>
+                                                      <!-- <button class="btn btn-success"><i class="fas fa-check-square"></i></button> -->
+                                                      <form action="">
+                                                      <a href="" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-trash-alt"></i></a>
+                                                      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="exampleModalLabel">Delete this booking?</h5>
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                              </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                              ...
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                              <button type="button" class="btn btn-primary">Yes</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                      <!-- <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> -->
+                                                    </form>
+                                                    </td>
+                                                   
+                                                </tr>
+                                            </tbody>
+                                            <% } %>
                                         </tbody>
                                     </table>
                                 </div>
